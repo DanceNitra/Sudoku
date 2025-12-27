@@ -1,0 +1,172 @@
+/* Additional custom styles for Sudoku game */
+
+/* Sudoku grid container */
+#sudoku-grid {
+    aspect-ratio: 1 / 1;
+    max-width: 600px;
+    width: 100%;
+}
+
+/* Sudoku grid cell styling */
+.sudoku-cell {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid #cbd5e1;
+    user-select: none;
+    aspect-ratio: 1 / 1;
+}
+
+@media (min-width: 768px) {
+    .sudoku-cell {
+        font-size: 1.75rem;
+    }
+}
+
+/* Cell borders for 3x3 blocks */
+.sudoku-cell.border-r-thick {
+    border-right: 3px solid #4b5563;
+}
+
+.sudoku-cell.border-b-thick {
+    border-bottom: 3px solid #4b5563;
+}
+
+/* Cell states */
+.sudoku-cell.prefilled {
+    background-color: #f8fafc;
+    color: #1e293b;
+    font-weight: 700;
+}
+
+.sudoku-cell.user-filled {
+    background-color: #ffffff;
+    color: #3b82f6;
+}
+
+.sudoku-cell.selected {
+    background-color: #dbeafe;
+    box-shadow: inset 0 0 0 2px #3b82f6;
+}
+
+.sudoku-cell.highlighted {
+    background-color: #eff6ff;
+}
+
+.sudoku-cell.error {
+    background-color: #fee2e2;
+    color: #dc2626;
+}
+
+.sudoku-cell.notes {
+    font-size: 0.75rem;
+    color: #6b7280;
+    font-weight: 500;
+}
+
+.sudoku-cell.notes .note-number {
+    display: inline-block;
+    width: 33.33%;
+    text-align: center;
+}
+
+/* Notes grid inside cell */
+.notes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    width: 100%;
+    height: 100%;
+    padding: 2px;
+}
+
+/* Number buttons active state */
+.number-btn.active {
+    background-color: #3b82f6;
+    color: white;
+    border-color: #2563eb;
+    transform: scale(1.05);
+}
+
+/* Difficulty buttons active state */
+.difficulty-btn.active {
+    background-color: #1e40af;
+    color: white;
+    border-color: #1e3a8a;
+    font-weight: 600;
+}
+
+/* Timer animation */
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+.timer-running {
+    animation: pulse 2s infinite;
+}
+
+/* Modal animations */
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+#message-modal > div {
+    animation: modalFadeIn 0.3s ease-out;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    #sudoku-grid {
+        max-width: 100%;
+    }
+    
+    .sudoku-cell {
+        font-size: 1.25rem;
+    }
+    
+    .number-btn, #eraser, #notes-toggle {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+}
+
+/* Print styles */
+@media print {
+    body {
+        background: white !important;
+        color: black !important;
+    }
+    
+    .bg-white, .bg-blue-50, .bg-green-50, .bg-amber-50, .bg-purple-50 {
+        background: white !important;
+        border: 1px solid #ccc !important;
+    }
+    
+    button, #right-panel, header p, .text-center {
+        display: none !important;
+    }
+    
+    #sudoku-grid {
+        border: 2px solid black !important;
+    }
+    
+    .sudoku-cell {
+        border: 1px solid #999 !important;
+        color: black !important;
+        background: white !important;
+    }
+}
